@@ -5,8 +5,15 @@ $(function(){
   var bornPlace = $('#bornPlace').val();
   var job = $('#job').val();
   var society = $('#society').val();
-  var letters = /^[A-Za-z-ÉéàÀèÈêÊîÎ]+$/;
-  var jobsLetters = /^[A-Za-z- ÉéàÀèÈêÊîÎ]+$/;
+  var letters = /^[A-Za-zéÉàÀîÎçÇëËïêÊèÈ]+([-]?[A-Za-zéÉàÀîÎçÇëËïêÊèÈ])*$/;
+  // Ici, j'indique que ma variable letters ne comportera que des lettres majuscules/minucules allant de a à z ainsi que le tiret du 6 (cf la fin).
+  // Il faut toujours donner ses instructions entre les slashs "/". Le "^" indique que nous voulons ces caractères dès le début du string. Le "$" indique que nous voulons ces caractères jusqu'à la fin du string
+  // Si ^ était seul, il n'aurait concerné que la première lettre. Si $ était seul, il n'aurait concerné que la dernière lettre.
+  // C'est le + qui permet de dire que l'on peut placer autant de caractères que l'on veut.
+  // Edit : Nous faisons en sorte que le prénom ne finisse pas par un tiret.
+  var jobsLetters = /^[A-Za-z- ÉéàÀèÈêÊîÎçÇëËïêÊèÈ]+$/;
+  // Code plus souple, pour les métiers et société. Avec acceptation des espaces.
+  // Regex date de naissance :
   $('#submit').on('click', function(){
     var nameConfirmed = letters.exec($('#name').val());
     var firstNameConfirmed = letters.exec($('#firstName').val());
